@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-10</title>
+</head>
+<body> 
+<script>
+    function missingnumber(arr){
+        const tsum=55;
+        const arrsum=arr.reduce((acc,curr)=>acc+curr,0);
+        return tsum-arrsum;
+    }
+    console.log(missingnumber([1,2,3,4,6,7,8,9,10]));
+    console.log(missingnumber([7,2,3,6,5,9,1,4,8]));
+    console.log(missingnumber([10,5,1,2,4,6,8,3,9]));
+</script>  
+</body>
+</html>
