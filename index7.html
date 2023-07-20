@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-7</title>
+</head>
+<body> 
+<script>
+    function join(words) {
+        const n = words.length;
+        function findletter(word1,word2){
+            let common="";
+            for(let i=Math.min(word1.length,word2.length);i>=0;i--){
+                if(word1.endsWith(word2.substring(0,i))){
+                    common=word2.substring(0, i);
+                    break;
+                }
+            }
+        return common;
+        }
+        let result=words[0];
+        let minoverlap=Infinity;
+        for(let i=1;i<n;i++){
+            const commonletters=findletter(result,words[i]);
+            result+=words[i].substring(commonletters.length);
+            minoverlap=Math.min(minoverlap,commonletters.length);
+        }
+        return[result,minoverlap];
+    }
+    console.log(join(["oven","envier","erase","serious"]));
+    console.log(join(["move","over","very"]));
+    console.log(join(["to","ops","psy","syllable"]));
+    console.log(join(["aaa","bbb","ccc","ddd"]));
+</script>  
+</body>
+</html>

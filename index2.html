@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-2</title>
+</head>
+<body> 
+<script>
+    function noofchocolates(money,cost){
+        const moneyvalue=parseFloat(money.match(/[+-]?\d+(\.\d+)?/));
+        const costvalue=parseFloat(cost.match(/[+-]?\d+(\.\d+)?/));
+        if(isNaN(moneyvalue)||isNaN(costvalue)||moneyvalue<0||costvalue<=0){
+            return "Invalid Input";
+        }
+        let choc=Math.floor(moneyvalue/costvalue);
+        let wrap=choc;
+        while(wrap>=3){
+            const additionalchoc=Math.floor(wrap/3);
+            choc+=additionalchoc;
+            wrap=wrap%3+additionalchoc;
+        }
+        return choc;
+    }
+    console.log(noofchocolates("4$","1$"));
+    console.log(noofchocolates("55 $", "5$"));
+    console.log(noofchocolates("I have 68$", "2$"));
+    console.log(noofchocolates("I got -68$ from my mom", "2$"));
+</script>
+</body>
+</html>

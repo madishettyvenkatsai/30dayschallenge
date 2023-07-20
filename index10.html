@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-10</title>
+</head>
+<body> 
+<script>
+    function bandname(bandnames){
+        function compbandnames(a,b){
+            const articles=["The","A","An"];
+            const cleannamea=a.split(' ').filter(word=>!articles.includes(word)).join(' ');
+            const cleannameb=b.split(' ').filter(word=>!articles.includes(word)).join(' ');
+            return cleannamea.localeCompare(cleannameb);
+        }
+        bandnames.sort(compbandnames);
+        return bandnames;
+    }
+    console.log(bandname(["The New Yardbirds","The Beatles","The Square Roots","On A Friday","An Irony"]));
+    console.log(bandname(["The Platters","A Yard of Yarn","The Everly Brothers","A Monster Effect","The Sex Maggots"]));
+    console.log(bandname(["But Myth","An Old Dog","Def Leppard","The Any Glitters","The Dawn"]));
+</script>  
+</body>
+</html>
