@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-13</title>
+</head>
+<body>
+<script>
+    function frequencysort(s){
+        const charfrequency={};
+        for(const char of s){
+            charfrequency[char]=(charfrequency[char]||0)+1;
+        }
+        const charfrequencyarr=[];
+        for(const char in charfrequency){
+            charfrequencyarr.push({char,freq:charfrequency[char]});
+        }
+        charfrequencyarr.sort((a,b)=>{
+            if(a.freq!==b.freq){
+                return b.freq-a.freq;
+            }
+            else{
+                const aLower=a.char.toLowerCase();
+                const bLower=b.char.toLowerCase();
+                if(aLower!==bLower){
+                    return aLower<bLower?-1:1;
+                }
+                else{
+                    return a.char<b.char?-1:1;
+                }
+            }
+        });
+        let newstr='';
+        for(const item of charfrequencyarr){
+            newstr+=item.char.repeat(item.freq);
+        }
+        return newstr;
+    }
+    console.log(frequencysort("tree"));
+    console.log(frequencysort("cccaaa"));
+    console.log(frequencysort("Aabb"));
+</script>  
+</body>
+</html>
