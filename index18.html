@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-18</title>
+</head>
+<body>
+<script>
+    function hasSumofTwo(ar1,ar2,targetSum){
+        const set=new Set(ar1);
+        for(const num of ar2){
+            const compliment=targetSum-num;
+            if(set.has(compliment)){
+                return true;
+            }
+        }
+        return false;
+    }
+    const ar1=[1,4,6,8];
+    const ar2=[3,7,2,9];
+    const targetSum=13;
+    console.log(hasSumofTwo(ar1,ar2,targetSum));
+</script>  
+</body>
+</html>

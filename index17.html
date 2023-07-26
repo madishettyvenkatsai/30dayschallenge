@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-17</title>
+</head>
+<body>
+<script>
+    function hasUniqueCharacter(str){
+        const charSet=new Set();
+        for(const char of str){
+            if(charSet.has(char)){
+                return false;
+            }
+            charSet.add(char);
+        }
+        return true;
+    }
+    console.log(hasUniqueCharacter("abcdefg"));
+    console.log(hasUniqueCharacter("hello"));
+</script>  
+</body>
+</html>
