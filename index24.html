@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-24</title>
+</head>
+<body>
+<script>
+    function cntsmall(nums){
+        const cnts=new Array(nums.length).fill(0);
+        const indexednums=nums.map((num,index)=>({num,index}));
+        function mergesort(arr){
+            if(arr.length<=1) {
+                return arr;
+            }
+            const mid=Math.floor(arr.length/2);
+            const left=arr.slice(0,mid);
+            const right=arr.slice(mid);
+            return merge(mergesort(left),mergesort(right));
+        }
+        function merge(left,right){
+            const merged=[];
+            let leftidx=0;
+            let rightidx=0;
+            let rightcnt=0;
+            while(leftidx<left.length&&rightidx<right.length){
+                if(left[leftidx].num<=right[rightidx].num){
+                    cnts[left[leftidx].index]+=rightcnt;
+                    merged.push(left[leftidx]);
+                    leftidx++;
+                }
+                else{
+                    merged.push(right[rightidx]);
+                    rightidx++;
+                    rightcnt++;
+                }
+            }
+            while(leftidx<left.length){
+                cnts[left[leftidx].index]+=rightcnt;
+                merged.push(left[leftidx]);
+                leftidx++;
+            }
+            while(rightidx<right.length){
+                merged.push(right[rightidx]);
+                rightidx++;
+                rightcnt++;
+            }
+            return merged;
+        }
+        mergesort(indexednums);
+        return cnts;
+    }
+    console.log(cntsmall([5,2,6,1]));
+    console.log(cntsmall([-1,-1]));
+</script>
+</body>
+</html>
