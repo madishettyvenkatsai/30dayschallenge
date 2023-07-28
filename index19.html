@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-19</title>
+</head>
+<body>
+<script>
+    function minimum(s){
+        const n=s.length;
+        const ispalindrome=new Array(n).fill(0).map(()=>new Array(n).fill(false));
+        const dp=new Array(n).fill(Infinity);
+        for(let i=n-1;i>=0;i--){
+            for(let j=i;j<n;j++){
+                if(s[i]===s[j] && (j-i<=1 || ispalindrome[i+1][j-1])){
+                    ispalindrome[i][j]=true;
+                }
+            }
+        }
+        for(let i=0;i<n;i++){
+            if(ispalindrome[0][i]){
+                dp[i]=0;
+            }
+            else{
+                for(let j=0;j<i;j++){
+                    if(ispalindrome[j+1][i]){
+                        dp[i]=Math.min(dp[i],dp[j]+1);
+                    }
+                }
+            }
+        }
+        return dp[n-1];
+    }
+    const s="aab";
+    console.log(minimum(s));
+</script>  
+</body>
+</html>
