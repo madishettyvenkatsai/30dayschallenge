@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-21</title>
+</head>
+<body>
+<script>
+    function WordBreak(s,wordDict){
+        const wordSet=new Set(wordDict);
+        const mem=new Array(s.length).fill(false);
+        for(let i=0;i<s.length;i++){
+            for(let j=0;j<=i;j++){
+                const word=s.substring(j,i+1);
+                if(wordSet.has(word)&&(j===0||mem[j-1])){
+                    mem[i]=true;
+                    break;
+                }
+            }
+        }
+        return mem[s.length-1]||false;
+    }
+    console.log(WordBreak("neatcode",["neat","code"]));
+    console.log(WordBreak("applepenapple",["apple","pen"]));
+    console.log(WordBreak("catsandog",["cats","dog","sand","and","cat"]));
+</script>
+</body>
+</html>
