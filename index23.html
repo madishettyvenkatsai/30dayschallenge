@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-23</title>
+</head>
+<body>
+<script>
+    function textjustification(words,maxwid){
+        const res=[];
+        let currline=[];
+        let currlen=0;
+        for(let i=0;i<words.length;i++){
+            const word=words[i];
+            if(currlen+currline.length+word.length<=maxwid){
+                currline.push(word);
+                currlen+=word.length;
+            }
+            else{
+                res.push(justifyline(currline,currlen,maxwid));
+                currline=[word];
+                currlen=word.length;
+            }
+        }
+        if(currline.length>0){
+            const lastline=currline.join(' ');
+            res.push(lastline+' '.repeat(maxwid-lastline.length));
+        }
+        return res;
+        }
+        function justifyline(line,currlen,maxdwid){
+        const spaceneeded=maxwid-currlen;
+        const gap=line.length-1;
+        if (gap===0){
+            return line[0]+' '.repeat(spaceneeded);
+        }
+        const spacespergap=Math.floor(spaceneeded/gap);
+        const extraspaces=spaceneeded%gap;
+        let justifiedline=line[0];
+        for(let i=1;i<line.length;i++){
+            const spaces=i<=extraspaces?spacespergap+1:spacespergap;
+            justifiedline+=' '.repeat(spaces)+line[i];
+        }
+        return justifiedline;
+    }
+    const words=["This","is","an","example","of","text","justification."];
+    const maxwid=16;
+    console.log(textjustification(words,maxwid));
+</script>
+</body>
+</html>
